@@ -1,0 +1,22 @@
+# Requisitos obrigatórios
+☐ Liste todos os personagens de forma consistente e bem trabalhada.
+☐ É estritamente importante sabermos algumas as informações de TODAS as `starships` pertencentes à cada personagem.
+☐ Faça uma UI limpa, bonita e fluída. Seja utilizando algum framework CSS, pré processor, ou apenas Vanilla CSS.
+☐ Utilize VanillaJS ou a lib/framework/ferramenta que quiser, desde que o resultado final mostra o básico requisitado.
+☐ Mostrar mais personagens do que a primeira página da API disponibiliza (Para poder ser avaliado como foi feito a integração destes dados, seja com ou sem paginação)
+☐ README.md explicando brevemente sobre seu projeto, e com instruções de instalação e execução, tanto da aplicação quanto dos testes, caso tenha.
+
+# Requisitos desejáveis
+☐ Teste unitário
+☐ Teste e2e
+☐ Responsividade
+☐ UI / UX
+☐ Imagens dos personagens
+
+
+# Project settings:
+☐ Deploy on heroku/netlify
+☐ Use CI
+☐ Add linter
+☐ Add prettier
+☐ Add coverage
