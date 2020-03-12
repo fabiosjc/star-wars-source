@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 header {
@@ -16,5 +16,5 @@ header {
 main {
   min-height: 90vh;
   background-color: #e6e6e6;
-  font-size: calc(10px + 2vmin);
+  padding: 1rem;
 }
