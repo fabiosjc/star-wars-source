@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { CharacterService } from '../../services/CharacterService';
-import { Starships } from './Starships';
+import { CharacterService } from '../../../services/CharacterService';
+import { Starships } from '../Starships/Starships';
+import { GeneralInfo, SpaceshipsInfo } from './styles';
 
 export const CharacterInfo = ({ character }) => {
   const [homeworld, setHomeworld] = useState('Unknown');
@@ -32,15 +33,19 @@ export const CharacterInfo = ({ character }) => {
 
   return (
     <Fragment>
-      <p className="generalInfo">
-        <strong>Specie:</strong> {species} <br />
-        <strong>Origin</strong>: {homeworld}
+      <GeneralInfo className="generalInfo">
+        <p>
+          <strong>Specie:</strong> {species}
+        </p>
+        <p>
+          <strong>Origin</strong>: {homeworld}
+        </p>
         <br />
-      </p>
-      <div className="spaceships">
-        <h4>Spaceships</h4>
+      </GeneralInfo>
+      <SpaceshipsInfo className="spaceships">
+        <h4 className="title">Spaceships</h4>
         <Starships starships={starships} />
-      </div>
+      </SpaceshipsInfo>
     </Fragment>
   );
 };

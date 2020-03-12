@@ -51,6 +51,9 @@ h2 {
   font-size: 28px !important;
   line-height: 32px !important;
   margin-bottom: 8px;
+
+  border-bottom: 1px solid #999;
+  margin-bottom: 1em;
 }
 
 h3 {
@@ -95,28 +98,12 @@ strong {
   font-weight: bold;
 }
 
-/* Responsible layout */
-.main-list {
-  columns: 4;
+button {
+  cursor: pointer;
 }
 
-/* iPhone 5 & 5S in portrait & landscape, iPhone 6, 7, & 8 in portrait, iPhone X in portrait */
-@media only screen and (min-width: 0px) and (max-width: 737px),
-  only screen and (min-device-width: 320px) and (max-device-width: 737px),
-  only screen and (min-device-width: 375px) and (max-device-width: 812px) and (orientation: portrait),
-  only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
-  .main-list {
-    columns: 1;
-  }
-}
-
-/* iPad in portrait, iPad 1 & 2 in portrait, Retina iPad in portrait */
-@media only screen and (min-width: 768px) and (max-width: 1024px),
-  only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait),
-  only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1),
-  only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (min-device-width: 738px) and (max-device-width: 812px) and (orientation: landscape) {
-  .main-list {
-    columns: 2;
-  }
+section.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0;
 }

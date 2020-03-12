@@ -4,8 +4,7 @@
   grid-gap: 2rem;
 }
 
-.cards,
-.main-list {
+.cards {
   display: grid;
   max-width: 1200px;
   margin: 0 auto 30px;

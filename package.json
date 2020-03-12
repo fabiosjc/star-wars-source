@@ -11,6 +11,7 @@
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-spinners": "^0.8.1",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
@@ -24,7 +25,7 @@
     "prettier": "1.19.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "yarn install && react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",

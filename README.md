@@ -1,6 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Star-wars: the source
+
+Project developed in React to display the characters of Star Wars, using the open source API [SWAPI](https://swapi.co/)
+
+The main idea is to be able to show all characters from Star Wars and consult the information of ALL the `starships` belonging to each character.
+
+## Stack
+
+| Technology | Version |
+| ---------- | ------- |
+| React      | 16.13.0 |
+| Node.js    | 12.16.1 |
+| yarn       | 1.21.1  |
+| Storybook  | 5.13.4  |
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 

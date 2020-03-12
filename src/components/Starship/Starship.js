@@ -1,8 +1,20 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import GridLoader from 'react-spinners/GridLoader';
 
 import './index.css';
+import { LoadingContainer } from '../Characters/styles';
+import { Button } from '../shared/Button/Button';
 
 export const Starship = (...props) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
+
   const getImageId = url => {
     if (!url) return '';
 
@@ -16,7 +28,16 @@ export const Starship = (...props) => {
 
   return (
     <Fragment>
-      <h3>Starship</h3>
+      <h2>Starship</h2>
+      <LoadingContainer className="loader-container" isLoading={isLoading}>
+        <GridLoader
+          color={'#222'}
+          loading={isLoading}
+          size={15}
+          style={{ display: 'block', margin: '0 auto', borderColor: 'red' }}
+        />
+      </LoadingContainer>
+
       <div className="starship-details">
         <div className="spaceship-image">
           <img
@@ -55,7 +76,10 @@ export const Starship = (...props) => {
           </p>
         </div>
       </div>
-      <button onClick={props[0].history.goBack}>Return</button>
+
+      <section className="pagination">
+        <Button onClick={props[0].history.goBack}>Return</Button>
+      </section>
     </Fragment>
   );
 };

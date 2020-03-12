@@ -1,7 +1,10 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '../shared/Card';
 import { CharacterService } from '../../services/CharacterService';
-import { CharacterInfo } from './CharacterInfo';
+import { CharacterInfo } from './CharacterInfo/';
+import GridLoader from 'react-spinners/GridLoader';
+import { LoadingContainer, MainListStyle } from './styles';
+import { Button } from '../shared/Button';
 
 export const Characters = () => {
   const [characters, setCharacters] = useState([]);
@@ -15,7 +18,10 @@ export const Characters = () => {
     const response = await CharacterService.fetch(page);
     setCharacters(response.data.results);
     setLinks(response.data);
-    setIsLoading(false);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
   }
 
   const setLinks = data => {
@@ -50,8 +56,26 @@ export const Characters = () => {
   };
 
   return (
-    <div className="main-list">
+    <MainListStyle className="main-list">
       <h2>Characters</h2>
+
+      <section className="pagination">
+        <Button onClick={evt => previousPage(evt)} disabled={!previousLink}>
+          Previous
+        </Button>
+        <Button onClick={evt => nextPage(evt)} disabled={!nextLink}>
+          Next
+        </Button>
+      </section>
+
+      <LoadingContainer className="loader-container" isLoading={isLoading}>
+        <GridLoader
+          color={'#222'}
+          loading={isLoading}
+          size={15}
+          style={{ display: 'block', margin: '0 auto', borderColor: 'red' }}
+        />
+      </LoadingContainer>
       <section className="grid cards">
         {characters.map((character, index) => (
           <Card
@@ -63,18 +87,18 @@ export const Characters = () => {
             linkSeeMore="/seeMore"
             key={character.url}
           >
-            <CharacterInfo character={character} />
+            <CharacterInfo character={character} isLoading={isLoading} />
           </Card>
         ))}
       </section>
       <section className="pagination">
-        <button onClick={evt => previousPage(evt)} disabled={!previousLink}>
+        <Button onClick={evt => previousPage(evt)} disabled={!previousLink}>
           Previous
-        </button>
-        <button onClick={evt => nextPage(evt)} disabled={!nextLink}>
+        </Button>
+        <Button onClick={evt => nextPage(evt)} disabled={!nextLink}>
           Next
-        </button>
+        </Button>
       </section>
-    </div>
+    </MainListStyle>
   );
 };
