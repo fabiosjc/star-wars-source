@@ -9,10 +9,6 @@ import {
   CardLinkButton,
 } from './styles';
 
-/**
- * @description Componente Card
- * @author Fábio Henrique
- */
 export const Card = ({
   image,
   title,

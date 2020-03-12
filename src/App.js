@@ -1,13 +1,13 @@
 import React from 'react';
-import { Characters } from './components/Characters/Characters';
 import './App.css';
+import Routes from './routes';
 
 function App() {
   return (
     <div className="App">
       <header>Star Wars - The Source</header>
       <main>
-        <Characters />
+        <Routes />
       </main>
     </div>
   );
