@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import GridLoader from 'react-spinners/GridLoader';
 
-import './index.css';
 import { LoadingContainer } from '../Characters/styles';
 import { Button } from '../shared/Button/Button';
 import { STAR_WARS_IMAGES } from '../../constants/hosts';
+import { StarshipContainer } from './styles';
 
 export const Starship = (...props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +28,7 @@ export const Starship = (...props) => {
   const starship = props[0].location.data || {};
 
   return (
-    <Fragment>
+    <StarshipContainer>
       <h2>Starship</h2>
       <LoadingContainer className="loader-container" isLoading={isLoading}>
         <GridLoader
@@ -81,6 +81,6 @@ export const Starship = (...props) => {
       <section className="pagination">
         <Button onClick={props[0].history.goBack}>Return</Button>
       </section>
-    </Fragment>
+    </StarshipContainer>
   );
 };
