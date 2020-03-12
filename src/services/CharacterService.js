@@ -23,12 +23,9 @@ const CharacterService = {
     let promises = [];
     promises.push(axios.get(character.homeworld));
     character.species.map(url => promises.push(axios.get(url)));
-    // character.starships.map(url => promises.push(axios.get(url)));
 
     try {
-      const [homeworldResp, speciesResp, starshipsResp] = await axios.all(
-        promises
-      );
+      const [homeworldResp, speciesResp] = await axios.all(promises);
       const result = {
         homeworld: homeworldResp && homeworldResp.data.name,
         species: speciesResp && speciesResp.data.name,
@@ -38,29 +35,7 @@ const CharacterService = {
     } catch (err) {
       console.log(err.message);
     }
-
-    // return await axios
-    //   .all(
-    //     fetchDetail([character.homeworld]),
-    //     fetchDetail(character.species)
-    //     //fetchDetail(character.starships)
-    //   )
-    //   .then(
-    //     axios.spread((homeworldResp, speciesRes) => {
-    //       return {
-    //         homeworld: homeworldResp ? homeworldResp.data.name : 'Unknown',
-    //         species: speciesRes ? speciesRes.data.name : 'Unknown',
-    //       };
-    //     })
-    //   );
   },
-};
-
-const fetchDetail = urls => {
-  if (urls.length > 0) {
-    const promises = urls.map(url => axios.get(url));
-    return promises;
-  }
 };
 
 export { CharacterService };

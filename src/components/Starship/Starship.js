@@ -4,6 +4,7 @@ import GridLoader from 'react-spinners/GridLoader';
 import './index.css';
 import { LoadingContainer } from '../Characters/styles';
 import { Button } from '../shared/Button/Button';
+import { STAR_WARS_IMAGES } from '../../constants/hosts';
 
 export const Starship = (...props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +43,7 @@ export const Starship = (...props) => {
         <div className="spaceship-image">
           <img
             alt=""
-            src={`https://starwars-visualguide.com/assets/img/starships/${getImageId(
+            src={`${STAR_WARS_IMAGES}/starships/${getImageId(
               starship.url
             )}.jpg`}
           />
