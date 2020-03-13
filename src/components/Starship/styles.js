@@ -40,6 +40,14 @@ const StarshipContainer = styled.div`
       }
     }
 
+    .spaceship-image {
+      min-width: 100px;
+      min-height: 200px;
+      border: 4px solid white;
+      background: #f2f2f2 url(images/no_image_available.jpg) center center
+        no-repeat;
+      background-size: cover;
+    }
     .general-info {
       padding: 3em;
     }
