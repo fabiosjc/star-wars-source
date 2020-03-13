@@ -9,6 +9,14 @@ const StarshipContainer = styled.div`
     background: #fff;
   }
 
+  .spaceship-image {
+    min-width: 400px;
+    min-height: 400px;
+    border: 4px solid white;
+    background: #eee url(images/no_image_available.jpg) center center;
+    background-size: cover;
+  }
+
   h3 {
     margin-bottom: 1em;
   }
