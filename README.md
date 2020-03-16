@@ -4,7 +4,7 @@ Project developed in React to display the characters of Star Wars, using the ope
 
 The main idea is to be able to show all characters from Star Wars and consult the information of ALL the `starships` belonging to each character.
 
-Demo: https://start-wars.netlify.com/
+Demo: https://thesource.netlify.com/
 
 ## Stack
 
