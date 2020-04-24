@@ -2,8 +2,10 @@ import axios from 'axios';
 import { STAR_WARS_API } from '../constants/hosts';
 
 const CharacterService = {
-  fetch: async page => {
-    return await axios.get(`${STAR_WARS_API}/people/?page=${page}`);
+  fetch: async ({ search = '', page = 1 }) => {
+    return await axios.get(
+      `${STAR_WARS_API}/people/?page=${page}&search=${search}`
+    );
   },
 
   fetchStarShips: async character => {

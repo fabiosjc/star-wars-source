@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Card } from '../shared/Card';
 import { CharacterService } from '../../services/CharacterService';
 import { CharacterInfo } from './CharacterInfo/';
 import GridLoader from 'react-spinners/GridLoader';
-import { LoadingContainer, MainListStyle } from './styles';
+import { LoadingContainer, MainListStyle, SearchBox } from './styles';
 import { Button } from '../shared/Button';
 
 export const Characters = () => {
@@ -12,10 +12,11 @@ export const Characters = () => {
   const [page, setPage] = useState(1);
   const [previousLink, setPreviousLink] = useState(null);
   const [nextLink, setNextLink] = useState(null);
+  const [search, setSearch] = useState();
 
-  async function fetchData(page) {
+  async function fetchData({ search, page }) {
     setIsLoading(true);
-    const response = await CharacterService.fetch(page);
+    const response = await CharacterService.fetch({ search, page });
     setCharacters(response.data.results);
     setLinks(response.data);
 
@@ -30,7 +31,7 @@ export const Characters = () => {
   };
 
   useEffect(() => {
-    fetchData(page);
+    fetchData({ search, page });
 
     return () => {
       setCharacters([]);
@@ -55,28 +56,19 @@ export const Characters = () => {
     );
   };
 
-  return (
-    <MainListStyle className="main-list">
-      <h2>Characters</h2>
+  const onSearch = () => {
+    fetchData({ search, page });
+  };
 
-      <section className="pagination">
-        <Button onClick={evt => previousPage(evt)} disabled={!previousLink}>
-          Previous
-        </Button>
-        <Button onClick={evt => nextPage(evt)} disabled={!nextLink}>
-          Next
-        </Button>
-      </section>
+  const onKeyDown = event => {
+    if (event.key === 'Enter') {
+      onSearch();
+    }
+  };
 
-      <LoadingContainer className="loader-container" isLoading={isLoading}>
-        <GridLoader
-          color={'#222'}
-          loading={isLoading}
-          size={15}
-          style={{ display: 'block', margin: '0 auto', borderColor: 'red' }}
-        />
-      </LoadingContainer>
-      <section className="grid cards">
+  const renderCharacters = () => {
+    return (
+      <Fragment>
         {characters.map((character, index) => (
           <Card
             title={character.name}
@@ -90,15 +82,64 @@ export const Characters = () => {
             <CharacterInfo character={character} isLoading={isLoading} />
           </Card>
         ))}
-      </section>
-      <section className="pagination">
-        <Button onClick={evt => previousPage(evt)} disabled={!previousLink}>
-          Previous
-        </Button>
-        <Button onClick={evt => nextPage(evt)} disabled={!nextLink}>
-          Next
-        </Button>
-      </section>
+      </Fragment>
+    );
+  };
+
+  const paginationButtons = () => {
+    return (
+      (previousLink || nextLink) && (
+        <section className="pagination">
+          <Button onClick={evt => previousPage(evt)} disabled={!previousLink}>
+            Previous
+          </Button>
+          <Button onClick={evt => nextPage(evt)} disabled={!nextLink}>
+            Next
+          </Button>
+        </section>
+      )
+    );
+  };
+
+  return (
+    <MainListStyle className="main-list">
+      <h2>Characters</h2>
+
+      <SearchBox>
+        <fieldset className="flex-container shadow">
+          <input
+            id="searchField"
+            type="text"
+            className="search-field"
+            placeholder="Search by character"
+            value={search}
+            onChange={event => setSearch(event.target.value)}
+            onKeyDown={onKeyDown}
+            aria-label="Search Field"
+          />
+          <button onClick={onSearch}>Search</button>
+        </fieldset>
+      </SearchBox>
+
+      <LoadingContainer className="loader-container" isLoading={isLoading}>
+        <GridLoader
+          color={'#222'}
+          loading={isLoading}
+          size={15}
+          style={{ display: 'block', margin: '0 auto', borderColor: 'red' }}
+        />
+      </LoadingContainer>
+      <div>
+        {characters.length === 0 ? (
+          <div className="search-not-found">Search not found</div>
+        ) : (
+          <Fragment>
+            {paginationButtons()}
+            <section className="grid cards">{renderCharacters()}</section>
+            {paginationButtons()}
+          </Fragment>
+        )}
+      </div>
     </MainListStyle>
   );
 };
